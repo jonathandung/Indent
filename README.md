@@ -38,6 +38,12 @@ Install-Module -Name Indent # user installation
 Install-Module -Name Indent -Scope AllUsers # system installation; needs elevation
 ```
 
+To update the module:
+
+```ps1
+Update-Module -Name Indent
+```
+
 ### Install as a resource
 
 This method is faster and more modern, but requires Powershell 7.4+.
@@ -56,39 +62,37 @@ Install-PSResource -Name Indent # user installation
 Install-PSResource -Name Indent -Scope AllUsers # system installation; needs elevation
 ```
 
-### Updates
-
-To update the module:
+To update the resource:
 
 ```ps1
-Update-Module -Name Indent
+Update-PSResource -Name Indent
 ```
 
 ## Usage
 
 ```ps1
 Import-Module -Name Indent # Make the Indent function and IndentFilter filter available
-echo @"
+Write-Output @"
 w  
    
 x
  y
 
 z z 
-"@ > text.txt
-type text.txt | Indent -Count 3 -TrimInput > indented.txt
-# write each whitespace-only line in text.txt as an empty line and each other line
-# indented by three spaces into indented.txt
-type indented.txt # literal output below
+"@ > a.txt
+Get-Content a.txt | Indent -Count 3 -TrimInput > b.txt
+# write each whitespace-only line in a.txt as an empty line and each other line indented by
+# three spaces into b.txt
+Get-Content b.txt | IndentFilter > a.txt
+# Indent each non-empty line in b.txt by two spaces and output into a.txt
+Get-Content b.txt # literal output below
 #   w
 #
 #   x
 #    y
 #
 #   z z
-type indented.txt | IndentFilter > text.txt
-# Indent each non-empty line in indented.txt by two spaces and output into text.txt
-type text.txt # literal output below
+Get-Content a.txt # literal output below
 #     w
 #
 #     x
