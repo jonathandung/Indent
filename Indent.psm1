@@ -20,18 +20,24 @@ function Indent {
         If specified, leading and trailing whitespace is removed from each input string
         before processing.
     .EXAMPLE
-        # indent inputs with a single tab character after trimming whitespace from each
+        # indent inputs with a single tab character after trimming whitespace from the right of each
         "xy", " yz", "", "zx  " | Indent -Count 1 -Indent "	" -TrimInput
         
-        # output:
+        # output (literal):
         #	xy
-        #	yz
+        #	 yz
         #
         #	zx
     .INPUTS
-        System.String. You can pipe strings to this function.
+        System.String. You can (and most likely will) pipe strings to this function.
     .OUTPUTS
         System.String. Returns indented string lines.
+    .LINK
+        https://github.com/jonathandung/Indent
+    .LINK
+        https://www.powershellgallery.com/packages/Indent
+    .LINK
+        https://jonathandung.github.io/Indent
     .NOTES        
         This function uses System.IO.StringReader for efficient line-by-line processing.
         Each line is processed individually to handle large strings efficiently.
@@ -46,7 +52,7 @@ function Indent {
     )
     begin {$i = $Indent * $Count}
     process {
-        if ($TrimInput) {$s = $s.Trim()}
+        if ($TrimInput) {$s = $s.TrimEnd()}
         if ($s -eq "") {
             if ($IndentEmptyLines) {$i}
             return
@@ -56,4 +62,23 @@ function Indent {
             if ($IndentEmptyLines -or $l -ne "") {"$i$l"}
         }
     }
+}
+filter IndentFilter {
+    <#
+    .SYNOPSIS
+        Indents each line of the pipeline input by two spaces.
+    .DESCRIPTION
+        This filter version is faster than the function version, but only applies to the above call pattern.
+    .EXAMPLE
+        echo "1`n2`n3" | IndentFilter
+        # is equivalent to:
+        echo "1`n2`n3" | Indent
+    .LINK
+        https://github.com/jonathandung/Indent
+    .LINK
+        https://www.powershellgallery.com/packages/Indent
+    .LINK
+        https://jonathandung.github.io/Indent
+    #>
+    if ($_ -eq "") {""} else {"  $_"}
 }
