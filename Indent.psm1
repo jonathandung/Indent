@@ -61,26 +61,30 @@ function Indent {
     )
     begin {
         $i = $Indent * $Count
-        $M = [System.Text.RegularExpressions.RegexOptions]::Multiline
         if ($IndentEmptyLines) {
             $p = '^'
             $e = $i
-        } else {
+       }
+        else {
             $p = '^(?=.)'
             $e = ""
-        } 
-    }
+       }
+        $p = [System.Text.RegularExpressions.Regex]::new($p,
+            [System.Text.RegularExpressions.RegexOptions]::Compiled -bor
+            [System.Text.RegularExpressions.RegexOptions]::Multiline)
+   }
     process {
         if ($TrimInput) {$s = $s.TrimEnd()}
         if ("" -eq $s) {return $e}
-        if ($s.Length -lt $RegexThreshold) {return [Regex]::Replace($s, $p, $i, $M)}
+        if ($s.Length -lt $RegexThreshold) {return $p.Replace($s, $i)}
         $r = [System.IO.StringReader]::new($s)
         if ($IndentEmptyLines) {
             while ($null -ne ($l = $r.ReadLine())) {"$i$l"}
-        } else {
+       }
+        else {
             while ($null -ne ($l = $r.ReadLine())) {if ($l -eq "") {""} else {"$i$l"}}
-        }
-    }
+       }
+   }
 }
 filter IndentFilter {
     <#

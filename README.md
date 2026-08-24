@@ -3,7 +3,7 @@
 Indent text. Requires Powershell 5.1+, which should be built into Windows.
 
 > [!NOTE]
-> Read the comment in the source file (Indent.psm1) for documentation.
+> Read the comment in the source file (Indent.psm1) for static documentation.
 
 ## Installation
 
@@ -70,6 +70,12 @@ Update-PSResource -Name Indent
 
 ## Usage
 
+To get help for this module dynamically, use the `Get-Help` Cmdlet, optionally using
+the `-Online` switch.
+
+The snippet below demonstrates, in a Powershell instance, how one would use the module
+to process some text. It is self-contained.
+
 ```ps1
 Import-Module -Name Indent # Make the Indent function and IndentFilter filter available
 Write-Output @"
@@ -85,14 +91,14 @@ Get-Content a.txt | Indent -Count 3 -TrimInput > b.txt
 # three spaces into b.txt
 Get-Content b.txt | IndentFilter > a.txt
 # Indent each non-empty line in b.txt by two spaces and output into a.txt
-Get-Content b.txt # literal output below
+Get-Content b.txt # literal output (excluding pounds) below
 #   w
 #
 #   x
 #    y
 #
 #   z z
-Get-Content a.txt # literal output below
+Get-Content a.txt # literal output (excluding pounds) below
 #     w
 #
 #     x

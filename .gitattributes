@@ -1,0 +1,3 @@
+* text=auto eol=lf
+*.psm1 eol=crlf
+*.psd1 eol=crlf
