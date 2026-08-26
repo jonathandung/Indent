@@ -1,6 +1,13 @@
-# Indent
+# [Indent](https://www.powershellgallery.com/packages/Indent)
 
-Indent text. Requires Powershell 5.1+, which should be built into Windows.
+Indent text. Requires Powershell 5.1+, which should be built into any remotely modern
+Windows distribution.
+
+I wrote this in Powershell because
+[`sed`](https://man7.org/linux/man-pages/man1/sed.1.html) can quite literally cover all
+of its functionality on *nix at a faster speed, except the objects streaming part
+specific to the .NET-oriented design of Powershell. This utility is meant to bridge the
+cross-platform gap a bit, in the specific case of bulk indentation.
 
 > [!NOTE]
 > Read the comment in the source file (Indent.psm1) for static documentation.
@@ -70,7 +77,8 @@ Update-PSResource -Name Indent
 
 ## Usage
 
-To get help for this module dynamically, use the `Get-Help` Cmdlet, optionally using
+To get help for this module dynamically, use the
+[`Get-Help`](http://s.ha.mr#3qjsGj8dOVM##04q:$[Jl!W'Uq'1S?T) Cmdlet, optionally using
 the `-Online` switch.
 
 The snippet below demonstrates, in a Powershell instance, how one would use the module
