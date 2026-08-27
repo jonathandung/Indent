@@ -42,7 +42,7 @@ function Indent {
     .LINK
         https://github.com/jonathandung/Indent
     .LINK
-        https://www.powershellgallery.com/packages/Indent
+        https://www.powershellgallery.com/packages/Indent/1.2.3
     .LINK
         https://jonathandung.github.io/Indent
     .NOTES        
@@ -100,7 +100,7 @@ filter IndentFilter {
     .LINK
         https://github.com/jonathandung/Indent
     .LINK
-        https://www.powershellgallery.com/packages/Indent
+        https://www.powershellgallery.com/packages/Indent/1.2.3
     .LINK
         https://jonathandung.github.io/Indent
     #>
