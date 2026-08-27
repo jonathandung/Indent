@@ -1,3 +1,7 @@
-* text=auto eol=lf
-Indent.psm1 eol=crlf
+* text=auto
+.gitattributes eol=lf
+.gitignore eol=lf
 Indent.psd1 eol=crlf
+Indent.psm1 eol=crlf
+LICENSE eol=lf
+README.md eol=lf

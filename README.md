@@ -1,7 +1,9 @@
-# [Indent](https://www.powershellgallery.com/packages/Indent)
+# [Indent](https://www.powershellgallery.com/packages/Indent/1.2.3)
 
 Indent text. Requires Powershell 5.1+, which should be built into any remotely modern
 Windows distribution.
+
+Here is [the source](https://github.com/jonathandung/Indent/blob/1.2.3/Indent.psm1).
 
 I wrote this in Powershell because
 [`sed`](https://man7.org/linux/man-pages/man1/sed.1.html) can quite literally cover all
@@ -28,8 +30,6 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 ```
 
 ### Install as a module
-
-This is considered a legacy method, but is compatible with all environments.
 
 To skip confirmation prompts for all future installations:
 
@@ -78,8 +78,7 @@ Update-PSResource -Name Indent
 ## Usage
 
 To get help for this module dynamically, use the
-[`Get-Help`](http://s.ha.mr#3qjsGj8dOVM##04q:$[Jl!W'Uq'1S?T) Cmdlet, optionally using
-the `-Online` switch.
+[`Get-Help`](https://bit.ly/4xC8r7m) Cmdlet, optionally using the `-Online` switch.
 
 The snippet below demonstrates, in a Powershell instance, how one would use the module
 to process some text. It is self-contained.
@@ -95,10 +94,12 @@ x
 z z 
 "@ > a.txt
 Get-Content a.txt | Indent -Count 3 -TrimInput > b.txt
-# write each whitespace-only line in a.txt as an empty line and each other line indented by
-# three spaces into b.txt
+# write each whitespace-only line in a.txt as an empty line and each other line
+# indented by three spaces into b.txt; uses the advanced function `Indent` which
+# accepts parameters
 Get-Content b.txt | IndentFilter > a.txt
-# Indent each non-empty line in b.txt by two spaces and output into a.txt
+# Indent each non-empty line in b.txt by two spaces and output into a.txt; uses the filter
+# `IndentFilter` which doesn't accept parameters 
 Get-Content b.txt # literal output (excluding pounds) below
 #   w
 #
@@ -114,3 +115,13 @@ Get-Content a.txt # literal output (excluding pounds) below
 #
 #     z z
 ```
+
+## Contributing
+
+Please read the following documents:
+
+- [contributing guide](https://github.com/jonathandung/.github/blob/main/CONTRIBUTING.md)
+- [code of conduct](https://github.com/jonathandung/.github/blob/main/CODE_OF_CONDUCT.md)
+- [AI use policy](https://github.com/jonathandung/.github/blob/main/AI_USAGE_POLICY.md)
+
+Thank you for your contribution.
