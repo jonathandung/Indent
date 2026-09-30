@@ -42,7 +42,7 @@ function Indent {
     .LINK
         https://github.com/jonathandung/Indent
     .LINK
-        https://www.powershellgallery.com/packages/Indent/1.2.3
+        https://www.powershellgallery.com/packages/Indent/1.3.1
     .LINK
         https://jonathandung.github.io/Indent
     .NOTES        
@@ -69,14 +69,15 @@ function Indent {
         if ($TrimInput) {$s = $s.TrimEnd()}
         if ("" -eq $s) {return $e}
         if ($s.Length -lt $RegexThreshold) {return $p.Replace($s, $i)}
-        $r = [System.IO.StringReader]::new($s)
-        if ($IndentEmptyLines) {
-            while ($null -ne ($l = $r.ReadLine())) {"$i$l"}
-        }
-        else {
-            while ($null -ne ($l = $r.ReadLine())) {if ($l -eq "") {""} else {"$i$l"}}
-        }
+        if ($IndentEmptyLines) {Stream $s | ForEach-Object {"$i$_"}}
+        else {Stream $s | ForEach-Object {if ($_ -eq "") {""} else {"$i$_"}}}
     }
+}
+function Stream {
+    # private helper
+    param([string]$s)
+    $r = [System.IO.StringReader]::new($s)
+    while ($null -ne ($l = $r.ReadLine())) {$l}
 }
 filter IndentFilter {
     <#
@@ -100,9 +101,36 @@ filter IndentFilter {
     .LINK
         https://github.com/jonathandung/Indent
     .LINK
-        https://www.powershellgallery.com/packages/Indent/1.2.3
+        https://www.powershellgallery.com/packages/Indent/1.3.1
     .LINK
         https://jonathandung.github.io/Indent
     #>
     if ($_ -eq "") {""} else {"  $_"}
+}
+function IndentLines {
+    <#
+    .SYNOPSIS
+        Indents each line of a string by two spaces, maintaining blank lines.
+    .DESCRIPTION
+        This function indents each line of the input string by two spaces. It is faster
+        but less flexible than Indent, and slower but more flexible than IndentFilter,
+        which treats even multiline strings as individual lines.
+    .EXAMPLE
+        IndentLines "1`n2`n3"
+        # outputs:
+        #  1
+        #  2
+        #  3
+    .LINK
+        https://github.com/jonathandung/Indent
+    .LINK
+        https://www.powershellgallery.com/packages/Indent/1.3.1
+    .LINK
+        https://jonathandung.github.io/Indent
+    .NOTES        
+        This function makes use of System.IO.StringReader to achieve efficient
+        line-by-line processing and avoid memory overhead.
+    #>
+    param([string]$s)
+    Stream $s | IndentFilter
 }

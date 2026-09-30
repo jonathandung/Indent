@@ -1,9 +1,9 @@
-# [Indent](https://www.powershellgallery.com/packages/Indent/1.2.3)
+# [Indent](https://www.powershellgallery.com/packages/Indent/1.3.1)
 
 Indent text. Requires Powershell 5.1+, which should be built into any remotely modern
 Windows distribution.
 
-Here is [the source](https://github.com/jonathandung/Indent/blob/1.2.3/Indent.psm1).
+Here is [the source](https://github.com/jonathandung/Indent/blob/1.3.1/Indent.psm1).
 
 I wrote this in Powershell because
 [`sed`](https://man7.org/linux/man-pages/man1/sed.1.html) can quite literally cover all
@@ -84,7 +84,8 @@ The snippet below demonstrates, in a Powershell instance, how one would use the 
 to process some text. It is self-contained.
 
 ```ps1
-Import-Module -Name Indent # Make the Indent function and IndentFilter filter available
+Import-Module -Name Indent # Make the Indent and IndentLines functions and IndentFilter
+# filter available
 Write-Output @"
 w  
    
@@ -95,7 +96,7 @@ z z
 "@ > a.txt
 Get-Content a.txt | Indent -Count 3 -TrimInput > b.txt
 # write each whitespace-only line in a.txt as an empty line and each other line
-# indented by three spaces into b.txt; uses the advanced function `Indent` which
+# indented by three spaces into b.txt; uses the advanced function Indent which
 # accepts parameters
 Get-Content b.txt | IndentFilter > a.txt
 # Indent each non-empty line in b.txt by two spaces and output into a.txt; uses the filter
@@ -114,6 +115,22 @@ Get-Content a.txt # literal output (excluding pounds) below
 #      y
 #
 #     z z
+IndentLines @"
+ab
+
+ bc
+  cd
+  
+ bc
+ab
+"@ # literal output (excluding pounds) below
+#  ab
+#
+#   bc
+#    cd
+#    
+#   bc
+#  ab
 ```
 
 ## Contributing
