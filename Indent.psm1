@@ -9,7 +9,7 @@ function Indent {
         It processes input from the pipeline and supports custom indent strings.
         Empty lines can be optionally indented, but are kept by default.
     .PARAMETER s
-        The string to indent. Accepts pipeline input. Can be empty.
+        The string to indent. Accepts pipeline input; can be empty.
     .PARAMETER Count
         The number of indent units to add to each line; default 2. Must be positive.
     .PARAMETER Indent
@@ -40,12 +40,12 @@ function Indent {
     .OUTPUTS
         System.String. Returns indented string lines.
     .LINK
-        https://github.com/jonathandung/Indent
-    .LINK
         https://www.powershellgallery.com/packages/Indent/1.3.1
     .LINK
+        https://github.com/jonathandung/Indent
+    .LINK
         https://jonathandung.github.io/Indent
-    .NOTES        
+    .NOTES
         This function makes use of System.IO.StringReader to achieve efficient
         line-by-line processing and avoid memory overhead.
     #>
@@ -89,7 +89,7 @@ filter IndentFilter {
         Unlike Indent, it only applies the indentation to the first line and does not
         split multiline strings into individual lines automatically.
         Thus, it is only useful for Cmdlets that stream lines, which are still
-        numerous.
+        numerous in Powershell.
     .EXAMPLE
         "1", "2", "3" | Indent
         # is equivalent to:
@@ -99,9 +99,9 @@ filter IndentFilter {
         #  2
         #  3
     .LINK
-        https://github.com/jonathandung/Indent
-    .LINK
         https://www.powershellgallery.com/packages/Indent/1.3.1
+    .LINK
+        https://github.com/jonathandung/Indent
     .LINK
         https://jonathandung.github.io/Indent
     #>
@@ -122,12 +122,12 @@ function IndentLines {
         #  2
         #  3
     .LINK
-        https://github.com/jonathandung/Indent
-    .LINK
         https://www.powershellgallery.com/packages/Indent/1.3.1
     .LINK
+        https://github.com/jonathandung/Indent
+    .LINK
         https://jonathandung.github.io/Indent
-    .NOTES        
+    .NOTES
         This function makes use of System.IO.StringReader to achieve efficient
         line-by-line processing and avoid memory overhead.
     #>
