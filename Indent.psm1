@@ -16,7 +16,7 @@ function Indent {
         The string to use as one indent unit. Default is a single space " ".
         Can be any string (e.g., "`t" for tabs, "  " for two spaces, ">" for arrows).
     .PARAMETER RegexThreshold
-        The length threshold for using regular expression processing. Default 16384.
+        The length threshold for using regular expression processing; default 16384.
         If the input string is shorter than this threshold, regex replacement is used;
         otherwise, line-by-line processing is used to avoid memory overhead.
     .PARAMETER IndentEmptyLines
@@ -28,7 +28,7 @@ function Indent {
     .EXAMPLE
         "xy", " yz", "", "zx  `nz" | Indent -Count 1 -Indent "	" -TrimInput
         # indent inputs with a single tab character after trimming whitespace from the
-        # right of each (`n in the last string is a newline character)
+        # right of each (`n in the last string is a newline character in Powershell)
         # literal output below:
         #	xy
         #	 yz
@@ -36,7 +36,7 @@ function Indent {
         #	zx
         #	z
     .INPUTS
-        System.String. You can (and most likely will) pipe strings to this function.
+        System.String. You can pipe strings to this function.
     .OUTPUTS
         System.String. Returns indented string lines.
     .LINK
@@ -74,7 +74,6 @@ function Indent {
     }
 }
 function Stream {
-    # private helper
     param([string]$s)
     $r = [System.IO.StringReader]::new($s)
     while ($null -ne ($l = $r.ReadLine())) {$l}
