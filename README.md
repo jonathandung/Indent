@@ -1,11 +1,11 @@
-# [Indent](https://www.powershellgallery.com/packages/Indent/1.3.1)
+# [Indent](https://www.powershellgallery.com/packages/Indent/1.3.2)
 
 [![#StandWithPalestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/badges/StandWithPalestine.svg)](https://github.com/TheBSD/StandWithPalestine/blob/main/docs/README.md)
 
 Indent text. Requires Powershell 5.1+, which should be built into any remotely modern
 Windows distribution.
 
-Here is [the source](https://github.com/jonathandung/Indent/blob/1.3.1/Indent.psm1).
+Here is [the source](https://github.com/jonathandung/Indent/blob/1.3.2/Indent.psm1).
 
 I wrote this in Powershell because
 [`sed`](https://man7.org/linux/man-pages/man1/sed.1.html) covers all its functionality

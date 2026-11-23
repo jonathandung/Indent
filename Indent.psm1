@@ -40,7 +40,7 @@ function Indent {
     .OUTPUTS
         System.String. Returns indented string lines.
     .LINK
-        https://www.powershellgallery.com/packages/Indent/1.3.1
+        https://www.powershellgallery.com/packages/Indent/1.3.2
     .LINK
         https://github.com/jonathandung/Indent
     .LINK
@@ -98,7 +98,7 @@ filter IndentFilter {
         #  2
         #  3
     .LINK
-        https://www.powershellgallery.com/packages/Indent/1.3.1
+        https://www.powershellgallery.com/packages/Indent/1.3.2
     .LINK
         https://github.com/jonathandung/Indent
     .LINK
@@ -121,7 +121,7 @@ function IndentLines {
         #  2
         #  3
     .LINK
-        https://www.powershellgallery.com/packages/Indent/1.3.1
+        https://www.powershellgallery.com/packages/Indent/1.3.2
     .LINK
         https://github.com/jonathandung/Indent
     .LINK

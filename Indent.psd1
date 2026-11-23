@@ -1,6 +1,6 @@
 @{
   RootModule = 'Indent.psm1'
-  ModuleVersion = '1.3.1'
+  ModuleVersion = '1.3.2'
   CompatiblePSEditions = @('Core', 'Desktop')
   GUID = '5f26235d-ce21-46f4-8a77-9b373e605da5'
   Author = 'Jonathan Dung'
@@ -19,4 +19,3 @@
     }
   }
 }
-
