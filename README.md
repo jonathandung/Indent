@@ -1,15 +1,17 @@
 # [Indent](https://www.powershellgallery.com/packages/Indent/1.3.1)
 
+[![#StandWithPalestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/badges/StandWithPalestine.svg)](https://github.com/TheBSD/StandWithPalestine/blob/main/docs/README.md)
+
 Indent text. Requires Powershell 5.1+, which should be built into any remotely modern
 Windows distribution.
 
 Here is [the source](https://github.com/jonathandung/Indent/blob/1.3.1/Indent.psm1).
 
 I wrote this in Powershell because
-[`sed`](https://man7.org/linux/man-pages/man1/sed.1.html) can quite literally cover all
-of its functionality on *nix at a faster speed, except the objects streaming part
-specific to the .NET-oriented design of Powershell. This utility is meant to bridge the
-cross-platform gap a bit, in the specific case of bulk indentation.
+[`sed`](https://man7.org/linux/man-pages/man1/sed.1.html) covers all its functionality
+on *nix except the objects streaming part specific to the .NET-oriented design of
+Powershell. This utility is meant to bridge the cross-platform gap in the somewhat
+ubiquitous case of bulk indentation.
 
 > [!NOTE]
 > Read the comment in the source file (Indent.psm1) for static documentation.
@@ -22,8 +24,8 @@ It is recommended that you run the following first to allow scripts to be run:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-Or if you want this to apply to every user, execute below in an administrator
-Powershell instance:
+Or if you want this to apply to every user, execute the command below in an
+administrator Powershell instance:
 
 ```ps1
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
@@ -80,8 +82,7 @@ Update-PSResource -Name Indent
 To get help for this module dynamically, use the
 [`Get-Help`](https://bit.ly/4xC8r7m) Cmdlet, optionally using the `-Online` switch.
 
-The snippet below demonstrates, in a Powershell instance, how one would use the module
-to process some text. It is self-contained.
+The self-contained snippet below demonstrates usage of the module.
 
 ```ps1
 Import-Module -Name Indent # Make the Indent and IndentLines functions and IndentFilter
@@ -99,8 +100,8 @@ Get-Content a.txt | Indent -Count 3 -TrimInput > b.txt
 # indented by three spaces into b.txt; uses the advanced function Indent which
 # accepts parameters
 Get-Content b.txt | IndentFilter > a.txt
-# Indent each non-empty line in b.txt by two spaces and output into a.txt; uses the filter
-# `IndentFilter` which doesn't accept parameters 
+# Indent each non-empty line in b.txt by two spaces and output into a.txt
+# Uses `IndentFilter` which doesn't accept parameters 
 Get-Content b.txt # literal output (excluding pounds) below
 #   w
 #
