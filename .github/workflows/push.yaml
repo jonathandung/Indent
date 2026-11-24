@@ -1,15 +1,23 @@
 on: [push, pull_request]
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+permissions:
+  contents: read
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
     - shell: pwsh
       run: |
-        Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
-        $results = Invoke-ScriptAnalyzer -Path . -Recurse
-        if ($results) {
-          $results | Format-Table -AutoSize
-          throw "PSScriptAnalyzer found $($results.Count) issue(s)."
+        Install-Module -Name PSScriptAnalyzer -Scope CurrentUser
+        $r = Invoke-ScriptAnalyzer -Path . -Recurse
+        if ($r) {
+          $r | Format-Table -AutoSize
+          exit 1
         }
     - uses: DavidAnson/markdownlint-cli2-action@3ce8f712b5d8f31acd8e201be6d97e3d2bb23eb7
+    timeout-minutes: 1

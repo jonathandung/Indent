@@ -9,7 +9,7 @@ function Indent {
         It processes input from the pipeline and supports custom indent strings.
         Empty lines can be optionally indented, but are kept by default.
     .PARAMETER s
-        The string to indent. Accepts pipeline input; can be empty.
+        The string to indent, possibly from the pipeline; can be empty.
     .PARAMETER Count
         The number of indent units to add to each line; default 2. Must be positive.
     .PARAMETER Indent
